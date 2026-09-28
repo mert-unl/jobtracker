@@ -1,16 +1,16 @@
-import { BrowserRouter, Link, Route, Routes } from 'react-router'
+import { BrowserRouter, Route, Routes } from 'react-router'
 
 import Dashboard from './pages/Dashboard'
 import Jobs from './pages/Jobs'
+import Navbar from './components/Navbar'
 
 function App() {
   return (
     <BrowserRouter>
 
-      <nav>
-        <Link to="/">Dashboard</Link>
-        <Link to="/jobs">Jobs</Link>
-      </nav>
+      <Navbar />
+
+
 
       <Routes>
         <Route path="/" element={<Dashboard />} />
