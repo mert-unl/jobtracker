@@ -1,13 +1,25 @@
+import { BrowserRouter, Link, Route, Routes } from 'react-router'
+
+import Dashboard from './pages/Dashboard'
+import Jobs from './pages/Jobs'
 
 function App() {
-
   return (
-    <>
-      <h1 className="text-3xl font-bold underline text-red-400">
-        Hello world!
-      </h1>
-    </>
+    <BrowserRouter>
+
+      <nav>
+        <Link to="/">Dashboard</Link>
+        <Link to="/jobs">Jobs</Link>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/jobs" element={<Jobs />} />
+      </Routes>
+
+    </BrowserRouter>
   )
 }
+
 
 export default App
