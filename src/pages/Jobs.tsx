@@ -96,7 +96,8 @@ function Jobs() {
 
         await updateJob({
             ...job,
-            status: nextStatus
+            status: nextStatus,
+            appliedDate: new Date().toLocaleDateString("tr-TR"),
         })
 
         await loadJobs()
@@ -112,10 +113,13 @@ function Jobs() {
             <div className="px-4 py-6 text-white">
 
                 <button
-                    className="my-2 cursor-pointer rounded-md border bg-blue-950 px-6 py-2 hover:bg-blue-900"
+                    className="flex flex-row gap-2 my-2 ml-2 cursor-pointer text-sm rounded-md border bg-orange-600 px-3 py-2 hover:bg-orange-400"
                     onClick={handleOpenCreateModal}
                 >
-                    Create New Job
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" className="size-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                    Add Job
                 </button>
 
                 <div className="flex flex-row gap-1">

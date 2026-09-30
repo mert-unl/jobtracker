@@ -16,7 +16,7 @@ function JobCreateModal({ onClose,
     const [company, setCompany] = useState(editingJob?.company ?? "")
     const [position, setPosition] = useState(editingJob?.position ?? "")
     const [location, setLocation] = useState(editingJob?.location ?? "")
-    
+
     const [salary, setSalary] = useState(editingJob?.salary ?? "")
     const [jobUrl, setJobUrl] = useState(editingJob?.jobUrl ?? "")
     const [notes, setNotes] = useState(editingJob?.notes ?? "")
@@ -42,6 +42,9 @@ function JobCreateModal({ onClose,
             position,
             location,
             status: "Saved Jobs",
+
+            appliedDate: new Date().toLocaleDateString("tr-TR"),
+
             salary,
             jobUrl,
             notes

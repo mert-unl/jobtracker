@@ -25,18 +25,18 @@ function JobCard({ job, onReject, onDelete, onNext, onEdit }: JobCardProps) {
             <div className="flex items-start justify-between border-b border-orange-200">
 
                 <div>
-                    <h2 className="text-xl font-bold">
+                    <h2 className="text-lg font-bold">
                         {job.position}
                     </h2>
 
-                    <p>
+                    <p className="text-gray-200 py-1">
                         {job.company}
                     </p>
                 </div>
 
                 <div className="flex gap-1">
                     <button onClick={() => onEdit(job)}
-                        className="rounded-md p-1 hover:bg-gray-700 hover:text-white"
+                        className="rounded-md p-1 hover:bg-gray-700 hover:text-white hover:cursor-pointer"
                         title="Edit"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-5">
@@ -47,7 +47,7 @@ function JobCard({ job, onReject, onDelete, onNext, onEdit }: JobCardProps) {
 
                     <button
                         onClick={() => onDelete(job.id)}
-                        className="rounded-md p-1 bg-red-900 hover:bg-red-700 hover:text-white"
+                        className="rounded-md p-1 bg-red-900 hover:bg-red-700 hover:text-white hover:cursor-pointer"
                         title="Delete"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
@@ -133,7 +133,7 @@ function InfoText({ text, svg }: InfoTextProps) {
     return (
         <div className="flex items-center gap-2">
             {svg}
-            <p>{text ?? "-"}</p>
+            <p>{text == "" ? "-" : text}</p>
         </div>
     )
 }
