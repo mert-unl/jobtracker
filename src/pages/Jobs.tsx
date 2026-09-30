@@ -33,6 +33,7 @@ function Jobs() {
         const data = await getJobs()
         setJobs(data)
     }
+    
     function handleEdit(job: Job) {
         setEditingJob(job)
         setIsCreateModalOpen(true)
@@ -97,7 +98,7 @@ function Jobs() {
         await updateJob({
             ...job,
             status: nextStatus,
-            appliedDate: new Date().toLocaleDateString("tr-TR"),
+            appliedDate: new Date().toISOString().split("T")[0],
         })
 
         await loadJobs()

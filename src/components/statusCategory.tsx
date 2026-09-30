@@ -16,7 +16,7 @@ export default function StatusCategory({
     return (
         <div className="flex-1 p-2">
             <div className='flex justify-between py-2  border-b border-gray-600'>
-                <h2 className='text-xl'>{status}</h2>
+                <h2 className='text-xl text-gray-400'>{status}</h2>
                 <p className='text-xl text-gray-300'>{filteredJobs.length}</p>
             </div>
 

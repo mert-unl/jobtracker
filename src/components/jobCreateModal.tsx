@@ -42,9 +42,7 @@ function JobCreateModal({ onClose,
             position,
             location,
             status: "Saved Jobs",
-
-            appliedDate: new Date().toLocaleDateString("tr-TR"),
-
+            appliedDate: new Date().toISOString().split("T")[0],
             salary,
             jobUrl,
             notes
@@ -63,9 +61,9 @@ function JobCreateModal({ onClose,
 
                     <button
                         onClick={onClose}
-                        className="text-xl text-gray-400 hover:text-white"
+                        className="text-sm text-white border border-gray-500 items-center rounded-sm bg-red-900 hover:bg-red-700 hover:cursor-pointer  px-2 py-1 hover:text-white"
                     >
-                        ×
+                        x
                     </button>
                 </div>
 
@@ -78,7 +76,6 @@ function JobCreateModal({ onClose,
 
                         <input
                             type="text"
-                            placeholder="Company name"
                             value={company}
                             onChange={(e) => setCompany(e.target.value)}
                             className="w-full rounded-md border border-gray-700 bg-gray-800 px-3 py-2 outline-none focus:border-blue-500"
@@ -92,7 +89,6 @@ function JobCreateModal({ onClose,
 
                         <input
                             type="text"
-                            placeholder="Frontend Developer"
                             value={position}
                             onChange={(e) => setPosition(e.target.value)}
                             className="w-full rounded-md border border-gray-700 bg-gray-800 px-3 py-2 outline-none focus:border-blue-500"
@@ -106,7 +102,6 @@ function JobCreateModal({ onClose,
 
                         <input
                             type="text"
-                            placeholder="Remote / Antalya / Istanbul"
                             value={location}
                             onChange={(e) => setLocation(e.target.value)}
                             className="w-full rounded-md border border-gray-700 bg-gray-800 px-3 py-2 outline-none focus:border-blue-500"
@@ -120,7 +115,6 @@ function JobCreateModal({ onClose,
 
                         <input
                             type="text"
-                            placeholder="50.000 TL"
                             value={salary}
                             onChange={(e) => setSalary(e.target.value)}
                             className="w-full rounded-md border border-gray-700 bg-gray-800 px-3 py-2 outline-none focus:border-blue-500"
@@ -134,7 +128,6 @@ function JobCreateModal({ onClose,
 
                         <input
                             type="url"
-                            placeholder="https://..."
                             value={jobUrl}
                             onChange={(e) => setJobUrl(e.target.value)}
                             className="w-full rounded-md border border-gray-700 bg-gray-800 px-3 py-2 outline-none focus:border-blue-500"
@@ -147,7 +140,6 @@ function JobCreateModal({ onClose,
                         </label>
 
                         <textarea
-                            placeholder="Add some notes..."
                             rows={3}
                             value={notes}
                             onChange={(e) => setNotes(e.target.value)}
@@ -162,7 +154,7 @@ function JobCreateModal({ onClose,
 
                     <button
                         onClick={handleSubmit}
-                        className="rounded-md bg-blue-700 px-4 py-2 hover:bg-blue-600"
+                        className="rounded-md bg-blue-700 px-4 py-2 hover:bg-blue-600 hover:cursor-pointer"
                     >
                         {editingJob ? "Update Job" : "Create Job"}
                     </button>
