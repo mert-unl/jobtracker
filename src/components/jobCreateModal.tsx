@@ -4,17 +4,38 @@ import { useState } from "react"
 interface JobCreateModalProps {
     onClose: () => void
     onCreate: (job: Omit<Job, "id">) => void
+    onUpdate: (job: Job) => void
+    editingJob: Job | null
 }
 
-function JobCreateModal({ onClose, onCreate }: JobCreateModalProps) {
-    const [company, setCompany] = useState("")
-    const [position, setPosition] = useState("")
-    const [location, setLocation] = useState("")
-    const [salary, setSalary] = useState("")
-    const [jobUrl, setJobUrl] = useState("")
-    const [notes, setNotes] = useState("")
+function JobCreateModal({ onClose,
+    onCreate,
+    onUpdate,
+    editingJob }: JobCreateModalProps) {
 
-    function handleCreate() {
+    const [company, setCompany] = useState(editingJob?.company ?? "")
+    const [position, setPosition] = useState(editingJob?.position ?? "")
+    const [location, setLocation] = useState(editingJob?.location ?? "")
+    const [salary, setSalary] = useState(editingJob?.salary ?? "")
+    const [jobUrl, setJobUrl] = useState(editingJob?.jobUrl ?? "")
+    const [notes, setNotes] = useState(editingJob?.notes ?? "")
+
+
+    function handleSubmit() {
+        if (editingJob) {
+            onUpdate({
+                ...editingJob,
+                company,
+                position,
+                location,
+                salary,
+                jobUrl,
+                notes
+            })
+
+            return
+        }
+
         onCreate({
             company,
             position,
@@ -33,7 +54,7 @@ function JobCreateModal({ onClose, onCreate }: JobCreateModalProps) {
 
                 <div className="mb-6 flex items-center justify-between">
                     <h2 className="text-2xl font-bold">
-                        Create New Job
+                        {editingJob ? "Edit Job" : "Create New Job"}
                     </h2>
 
                     <button
@@ -136,10 +157,10 @@ function JobCreateModal({ onClose, onCreate }: JobCreateModalProps) {
 
 
                     <button
-                        onClick={handleCreate}
+                        onClick={handleSubmit}
                         className="rounded-md bg-blue-700 px-4 py-2 hover:bg-blue-600"
                     >
-                        Create Job
+                        {editingJob ? "Update Job" : "Create Job"}
                     </button>
 
                 </div>

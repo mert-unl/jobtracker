@@ -14,6 +14,16 @@ import {
 function Jobs() {
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
     const [jobs, setJobs] = useState<Job[]>([])
+    const [editingJob, setEditingJob] = useState<Job | null>(null)
+
+    const statuses: Job["status"][] = [
+        "Saved Jobs",
+        "Applied",
+        "Interview",
+        "Offer",
+        "Accepted",
+        "Rejected"
+    ]
 
     useEffect(() => {
         loadJobs()
@@ -23,6 +33,18 @@ function Jobs() {
         const data = await getJobs()
         setJobs(data)
     }
+    function handleEdit(job: Job) {
+        setEditingJob(job)
+        setIsCreateModalOpen(true)
+    }
+
+    async function handleUpdate(job: Job) {
+        await updateJob(job)
+        await loadJobs()
+
+        setEditingJob(null)
+        setIsCreateModalOpen(false)
+    }
 
     function handleOpenCreateModal() {
         setIsCreateModalOpen(true)
@@ -30,6 +52,7 @@ function Jobs() {
 
     function handleCloseCreateModal() {
         setIsCreateModalOpen(false)
+        setEditingJob(null)
     }
     async function handleCreate(job: Omit<Job, "id">) {
         await createJob(job)
@@ -43,6 +66,7 @@ function Jobs() {
         })
 
         await loadJobs()
+        console.log("çalışıyor")
     }
 
     async function handleNextStep(job: Job) {
@@ -62,9 +86,10 @@ function Jobs() {
                 break
 
             case "Offer":
-                nextStatus = "Rejected"
+                nextStatus = "Accepted"
                 break
 
+            case "Accepted":
             case "Rejected":
                 return
         }
@@ -81,13 +106,7 @@ function Jobs() {
         await deleteJob(id)
         await loadJobs()
     }
-    const statuses: Job["status"][] = [
-        "Saved Jobs",
-        "Applied",
-        "Interview",
-        "Offer",
-        "Rejected"
-    ]
+
     return (
         <div className="h-full w-full items-center bg-gray-950">
             <div className="px-10 py-6 text-white">
@@ -108,6 +127,7 @@ function Jobs() {
                             onDelete={handleDelete}
                             onNext={handleNextStep}
                             onReject={handleReject}
+                            onEdit={handleEdit}
                         />
                     ))}
                 </div>
@@ -116,8 +136,11 @@ function Jobs() {
 
             {isCreateModalOpen && (
                 <JobCreateModal
+                    key={editingJob?.id ?? "create"}
                     onClose={handleCloseCreateModal}
                     onCreate={handleCreate}
+                    onUpdate={handleUpdate}
+                    editingJob={editingJob}
                 />
             )}
         </div>

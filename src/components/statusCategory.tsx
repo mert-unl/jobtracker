@@ -7,8 +7,8 @@ export default function StatusCategory({
     status,
     onDelete,
     onNext,
-    onReject
-    //onEdit
+    onReject,
+    onEdit
 }: StatusCategory) {
 
     const filteredJobs = jobs.filter((job) => job.status === status)
@@ -28,7 +28,7 @@ export default function StatusCategory({
                         onReject={onReject}
                         onDelete={onDelete}
                         onNext={onNext}
-                    //onEdit={onEdit}
+                        onEdit={onEdit}
                     />
                 ))}
             </div>

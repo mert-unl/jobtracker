@@ -6,5 +6,5 @@ export interface StatusCategory {
     onReject: (job: Job) => void
     onNext: (job: Job) => void
     onDelete: (id: string) => void
-    //onEdit:(job:Job) => job
+    onEdit: (job: Job) => void
 }
