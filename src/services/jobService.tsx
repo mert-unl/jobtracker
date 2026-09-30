@@ -57,7 +57,6 @@ export async function updateJob(job: Job): Promise<Job> {
 
 
 
-
 export async function deleteJob(id: string): Promise<void> {
 
     const response = await fetch(`${API_URL}/${id}`, {

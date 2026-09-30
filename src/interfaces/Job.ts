@@ -10,8 +10,10 @@ export interface Job {
     notes?: string
 }
 
-export type JobStatus = | "Waiting"
+export type JobStatus = | "Saved Jobs"
     | "Applied"
     | "Interview"
     | "Offer"
+    | "Accepted"
     | "Rejected"
+
