@@ -20,7 +20,7 @@ export default function StatusCategory({
                 <p className='text-xl text-gray-300'>{filteredJobs.length}</p>
             </div>
 
-            <div className="py-4 flex flex-col gap-4">
+            <div className="py-4 flex flex-col gap-5">
                 {filteredJobs.map((job) => (
                     <JobCard
                         key={job.id}

@@ -108,8 +108,8 @@ function Jobs() {
     }
 
     return (
-        <div className="h-full w-full items-center bg-gray-950">
-            <div className="px-10 py-6 text-white">
+        <div className="h-full w-full items-center ">
+            <div className="px-4 py-6 text-white">
 
                 <button
                     className="my-2 cursor-pointer rounded-md border bg-blue-950 px-6 py-2 hover:bg-blue-900"
@@ -118,7 +118,7 @@ function Jobs() {
                     Create New Job
                 </button>
 
-                <div className="flex flex-row gap-3">
+                <div className="flex flex-row gap-1">
                     {statuses.map((status) => (
                         <StatusCategory
                             key={status}
